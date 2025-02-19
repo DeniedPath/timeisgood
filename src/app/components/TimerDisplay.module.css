@@ -1,3 +1,9 @@
+.controlsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .timerDisplay {
   background-color: var(--background-color);
   color: var(--text-color);
@@ -45,6 +51,7 @@
   font-size: 1em;
   border-radius: 5px;
   border: 1px solid #ccc;
+  color: black;
 }
 
 @keyframes fadeIn {
