@@ -1,0 +1,107 @@
+.timerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: white;
+  font-family: 'Arial', sans-serif;
+  transition: background 0.5s ease;
+}
+
+.darkMode {
+  background: linear-gradient(135deg, #121212, #333);
+  color: #fff;
+}
+
+.timerBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.timerDisplay {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.progressBar {
+  width: 100%;
+  max-width: 400px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: #ff6f61;
+  transition: width 1s linear;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.controls button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background: #ff6f61;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.controls button:hover {
+  background: #ff3b2f;
+}
+
+.addTimer {
+  margin-top: 20px;
+}
+
+.timerList {
+  margin-top: 20px;
+}
+
+.timerItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  width: 300px;
+}
+
+.soundSelector {
+  margin-top: 20px;
+}
+
+.timerHistory {
+  margin-top: 20px;
+}
+
+.historyItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  width: 300px;
+}

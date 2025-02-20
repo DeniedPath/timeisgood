@@ -1,0 +1,33 @@
+.musicPlaylist {
+  margin-top: 60px;
+  padding: 20px;
+}
+
+.musicPlaylist h2 {
+  /* Styles for the heading */
+}
+
+.musicPlaylist ul {
+  list-style: none;
+  padding: 0;
+  /* Additional styles for the unordered list */
+}
+
+.musicPlaylist li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  /* Additional styles for the list items */
+}
+
+.musicPlaylist button {
+  /* Styles for the buttons */
+}
+
+.musicPlaylist audio {
+  /* Styles for the audio player */
+}
