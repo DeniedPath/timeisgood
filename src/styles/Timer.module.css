@@ -1,107 +1,59 @@
 .timerContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: white;
-  font-family: 'Arial', sans-serif;
-  transition: background 0.5s ease;
+  @apply flex flex-col items-center justify-center h-screen bg-gradient-to-br from-blue-900 to-blue-700 text-white font-sans transition-colors duration-500;
 }
 
 .darkMode {
-  background: linear-gradient(135deg, #121212, #333);
-  color: #fff;
+  @apply bg-gradient-to-br from-gray-900 to-gray-700 text-white;
 }
 
 .timerBox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  @apply flex flex-col items-center justify-center p-5 bg-black bg-opacity-50 rounded-lg shadow-lg;
 }
 
 .timerDisplay {
-  font-size: 4rem;
-  margin-bottom: 20px;
+  @apply text-4xl mb-5;
 }
 
 .progressBar {
-  width: 100%;
-  max-width: 400px;
-  height: 10px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 5px;
-  overflow: hidden;
+  @apply w-full max-w-lg h-2 bg-white bg-opacity-30 rounded overflow-hidden;
 }
 
 .progress {
-  height: 100%;
-  background: #ff6f61;
-  transition: width 1s linear;
+  @apply h-full bg-red-400 transition-width duration-1000;
 }
 
 .controls {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  @apply flex flex-wrap justify-center;
 }
 
 .controls button {
-  margin: 10px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  color: white;
-  background: #ff6f61;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
+  @apply m-2 p-2 text-white bg-red-400 border-none rounded cursor-pointer transition-colors duration-300;
 }
 
 .controls button:hover {
-  background: #ff3b2f;
+  @apply bg-red-600;
 }
 
 .addTimer {
-  margin-top: 20px;
+  @apply mt-5;
 }
 
 .timerList {
-  margin-top: 20px;
+  @apply mt-5;
 }
 
 .timerItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px 0;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 5px;
-  width: 300px;
+  @apply flex justify-between items-center my-2 p-2 bg-white bg-opacity-10 rounded w-72;
 }
 
 .soundSelector {
-  margin-top: 20px;
+  @apply mt-5;
 }
 
 .timerHistory {
-  margin-top: 20px;
+  @apply mt-5;
 }
 
 .historyItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px 0;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 5px;
-  width: 300px;
+  @apply flex justify-between items-center my-2 p-2 bg-white bg-opacity-10 rounded w-72;
 }

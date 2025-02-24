@@ -1,5 +1,5 @@
-'use client';
-import { useState, useEffect, useRef } from 'react';
+"use client"
+import React, { useState, useEffect, useRef } from 'react';
 import { differenceInSeconds, addSeconds } from 'date-fns';
 import JSConfetti from 'js-confetti';
 import localforage from 'localforage';
@@ -7,10 +7,9 @@ import { nanoid } from 'nanoid';
 import Header from '../components/Header';
 import MusicPlaylist from '../components/MusicPlaylist';
 import SettingsPopup from '../components/SettingsPopup';
-import styles from '../styles/Timer.module.css';
+import 'tailwindcss/tailwind.css';
 
 const Timer = () => {
-  // State variables
   const [targetDate, setTargetDate] = useState(new Date('2023-12-31T23:59:59')); // Default target date
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
   const [isRunning, setIsRunning] = useState(true);
@@ -50,14 +49,12 @@ const Timer = () => {
     localforage.setItem('timerHistory', timerHistory);
   }, [timerHistory]);
 
-  // Calculate time left until target date
   function calculateTimeLeft() {
     const now = new Date();
     const difference = differenceInSeconds(targetDate, now);
     return difference > 0 ? difference : 0;
   }
 
-  // Update timer every second when running
   useEffect(() => {
     if (!isRunning) return;
 
@@ -68,7 +65,6 @@ const Timer = () => {
     return () => clearInterval(interval);
   }, [isRunning, targetDate]);
 
-  // Handle timer completion
   useEffect(() => {
     if (timeLeft === 0 && isRunning) {
       const audio = new Audio(selectedSound);
@@ -93,13 +89,11 @@ const Timer = () => {
     }
   }, [timeLeft, isRunning]);
 
-  // Update background color based on time left
   useEffect(() => {
     const backgroundColor = `hsl(${(timeLeft / calculateTimeLeft()) * 120}, 50%, 50%)`;
     document.body.style.backgroundColor = backgroundColor;
   }, [timeLeft]);
 
-  // Format time for display
   const formatTime = (seconds) => {
     const days = Math.floor(seconds / 86400);
     const hours = Math.floor((seconds % 86400) / 3600);
@@ -108,7 +102,6 @@ const Timer = () => {
     return `${String(days).padStart(2, '0')}d ${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(secs).padStart(2, '0')}s`;
   };
 
-  // Event handlers
   const handleStartPause = () => {
     setIsRunning(!isRunning);
   };
@@ -169,58 +162,51 @@ const Timer = () => {
     setShowSettings(false); // Close the settings popup
   };
 
-  // Render component
   return (
-    <div className={`${styles.timerContainer} ${isDarkMode ? styles.darkMode : ''}`}>
+    <div className={`flex flex-col items-center justify-center h-screen bg-gradient-to-br from-blue-900 to-blue-700 text-white font-sans transition-colors duration-500 ${isDarkMode ? 'bg-gradient-to-br from-gray-900 to-gray-700 text-white' : ''}`}>
       <Header onTabChange={handleTabChange} onSettingsClick={handleSettingsClick} />
       {activeTab === 'timer' && (
-        <div className={styles.timerBox}>
-          {/* Timer display */}
-          <div className={styles.timerDisplay}>
+        <div className="flex flex-col items-center justify-center p-5 bg-black bg-opacity-50 rounded-lg shadow-lg">
+          <div className="text-4xl mb-5">
             <h1>{formatTime(timeLeft)}</h1>
-            <div className={styles.progressBar}>
+            <div className="w-full max-w-lg h-2 bg-white bg-opacity-30 rounded overflow-hidden">
               <div
-                className={styles.progress}
+                className="h-full bg-red-400 transition-width duration-1000"
                 style={{ width: `${(timeLeft / calculateTimeLeft()) * 100}%` }}
               ></div>
             </div>
           </div>
-          {/* Timer controls */}
-          <div className={styles.controls}>
-            <button onClick={handleStartPause}>
+          <div className="flex flex-wrap justify-center">
+            <button className="m-2 p-2 text-white bg-red-400 border-none rounded cursor-pointer transition-colors duration-300" onClick={handleStartPause}>
               {isRunning ? 'Pause' : 'Start'}
             </button>
-            <button onClick={handleReset}>Reset</button>
-            <button onClick={toggleDarkMode}>
+            <button className="m-2 p-2 text-white bg-red-400 border-none rounded cursor-pointer transition-colors duration-300" onClick={handleReset}>Reset</button>
+            <button className="m-2 p-2 text-white bg-red-400 border-none rounded cursor-pointer transition-colors duration-300" onClick={toggleDarkMode}>
               {isDarkMode ? 'Light Mode' : 'Dark Mode'}
             </button>
-            <button onClick={toggleFullscreen}>Fullscreen</button>
-            <button onClick={togglePomodoroMode}>
+            <button className="m-2 p-2 text-white bg-red-400 border-none rounded cursor-pointer transition-colors duration-300" onClick={toggleFullscreen}>Fullscreen</button>
+            <button className="m-2 p-2 text-white bg-red-400 border-none rounded cursor-pointer transition-colors duration-300" onClick={togglePomodoroMode}>
               {pomodoroMode ? 'Normal Mode' : 'Pomodoro Mode'}
             </button>
           </div>
-          {/* Add new timer */}
-          <div className={styles.addTimer}>
-            <h4>input date and time</h4>
+          <div className="mt-5">
             <input
               type="datetime-local"
               value={newTimerDate}
               onChange={(e) => setNewTimerDate(e.target.value)}
             />
-            <button onClick={handleAddTimer}>Add Timer</button>
+            <button className="m-2 p-2 text-white bg-red-400 border-none rounded cursor-pointer transition-colors duration-300" onClick={handleAddTimer}>Add Timer</button>
           </div>
-          {/* Saved timers list */}
-          <div className={styles.timerList}>
+          <div className="mt-5">
             <h3>Saved Timers</h3>
             {timers.map((timer) => (
-              <div key={timer.id} className={styles.timerItem}>
+              <div key={timer.id} className="flex justify-between items-center my-2 p-2 bg-white bg-opacity-10 rounded w-72">
                 <span>{timer.date.toLocaleString()}</span>
-                <button onClick={() => handleSetTimer(timer.date)}>Set</button>
+                <button className="m-2 p-2 text-white bg-red-400 border-none rounded cursor-pointer transition-colors duration-300" onClick={() => handleSetTimer(timer.date)}>Set</button>
               </div>
             ))}
           </div>
-          {/* Alarm sound selector */}
-          <div className={styles.soundSelector}>
+          <div className="mt-5">
             <label>Alarm Sound:</label>
             <select value={selectedSound} onChange={handleSoundChange}>
               <option value="/alarm.mp3">Alarm 1</option>
@@ -228,11 +214,10 @@ const Timer = () => {
               <option value="/alarm3.mp3">Alarm 3</option>
             </select>
           </div>
-          {/* Timer history */}
-          <details className={styles.timerHistory}>
+          <details className="mt-5">
             <summary>Timer History</summary>
             {timerHistory.map((entry) => (
-              <div key={entry.id} className={styles.historyItem}>
+              <div key={entry.id} className="flex justify-between items-center my-2 p-2 bg-white bg-opacity-10 rounded w-72">
                 <span>{entry.date.toLocaleString()}</span>
                 <span>{formatTime(entry.duration)}</span>
               </div>
